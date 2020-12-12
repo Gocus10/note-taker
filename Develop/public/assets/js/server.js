@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 
-app.use(express.static('./develop/public'));
+app.use(express.static('./Develop/public'));
 
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '../../notes.html'));
