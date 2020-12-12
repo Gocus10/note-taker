@@ -52,12 +52,9 @@ const deleteNote = (id) =>
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
-
   if (activeNote.id) {
-    noteTitle.setAttribute('readonly', true);
-    noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
-    noteText.value = activeNote.title;
+    noteText.value = activeNote.text;
   } else {
     noteTitle.value = '';
     noteText.value = '';
@@ -150,21 +147,20 @@ const renderNoteList = async (notes) => {
 
     return liEl;
   };
-
-  if (jsonNotes.length === 0) {
+  if (jsonNotes.length  === 0) {
     noteListItems.push(createLi('No saved Notes', false));
   }
-
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
 
     noteListItems.push(li);
   });
-
+  
   if (window.location.pathname === '/notes') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
+  
 };
 
 // Gets notes from the db and renders them to the sidebar
